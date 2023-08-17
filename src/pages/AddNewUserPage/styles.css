@@ -1,0 +1,88 @@
+.add-user-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form */
+.admin-add-form {
+    width: 30rem;
+}
+
+.form-text {
+    margin-bottom: 1rem;
+}
+
+.form-line {
+    height: 0.1rem;
+    background-color: rgb(179, 173, 173);
+    margin-top: 0.75rem;
+}
+
+.form-line-left {
+    margin-right: 0.5rem;
+    width: 3rem;
+}
+
+.form-line-right {
+    margin-left: 0.5rem;
+    width: 68%;
+}
+
+.form-roles {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.form-roles label {
+    /* display: table-cell; */
+    /* vertical-align: middle; */
+    /* text-align: center; */
+    cursor: pointer;
+    background-color: #f1eded;
+    /* color: black; */
+    padding: 0.7rem 1.5rem;
+    border-radius: 3px;
+    border: 1px solid #454545;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.form-roles label:hover {
+    background-color: #010411;
+    color: white;
+}
+
+input[type="radio"] {
+    /* visibility: hidden; */
+    display: none;
+    /* height: 0; */
+    /* width: 0; */
+    /* margin: 0; */
+}
+
+input[type="radio"]:checked+label {
+    background-color: #010411;
+    color: white;
+}
+
+.form-contact {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+.form-contact :first-child {
+    margin-right: 10px;
+}
+
+
+/* Message Box */
+.message-box {
+    border: 1px solid black;
+    width: 28rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border-radius: 0.2rem;
+}
