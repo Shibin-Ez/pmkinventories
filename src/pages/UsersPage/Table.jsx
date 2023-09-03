@@ -17,7 +17,7 @@ const Table = ({ users }) => {
       </tr>
       {users.map((user) => {
         return user == "loading" ? (
-          <tr onClick={() => navigate(`/update-user/${user.id}`)}>
+          <tr>
             <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
             <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
             <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>

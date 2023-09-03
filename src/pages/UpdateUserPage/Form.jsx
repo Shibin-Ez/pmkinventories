@@ -102,7 +102,7 @@ const Form = () => {
     if (data) {
       alert("User updated successfully!");
     } else {
-      alert("Error adding user!");
+      alert("Error updating user!");
     }
     // onSubmitProps.resetForm();
   };

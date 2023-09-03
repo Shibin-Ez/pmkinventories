@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 import { useSelector } from "react-redux";
 
 import UpdateUserPage from "./pages/UpdateUserPage";
+import UpdateSitePage from "./pages/UpdateSitePage";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -55,6 +56,10 @@ function App() {
           <Route
             path="/update-user/:id"
             element={isAuth ? <UpdateUserPage /> : <LoginPage />}
+          />
+          <Route
+            path="/update-site/:id"
+            element={isAuth ? <UpdateSitePage /> : <LoginPage />}
           />
         </Routes>
       </BrowserRouter>

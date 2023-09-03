@@ -1,4 +1,9 @@
+import Skeleton from "react-loading-skeleton";
+import { useNavigate } from "react-router-dom";
+
 const Table = ({ inventories }) => {
+  const navigate = useNavigate();
+
   return (
     <table>
       <tr>
@@ -6,7 +11,16 @@ const Table = ({ inventories }) => {
         <th>Inventory Name</th>
       </tr>
       {inventories.map((inventory) => {
-        return (
+        return inventory == "loading" ? (
+          <tr>
+            <td style={{ padding: "0.3rem" }}>
+              <Skeleton width="fullWidth" height="2.5rem" />
+            </td>
+            <td style={{ padding: "0.3rem" }}>
+              <Skeleton width="fullWidth" height="2.5rem" />
+            </td>
+          </tr>
+        ) : (
           <tr>
             <td>{inventory.id}</td>
             <td>{inventory.name}</td>

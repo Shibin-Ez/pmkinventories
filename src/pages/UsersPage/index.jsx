@@ -23,7 +23,7 @@ const UsersPage = () => {
 
   return (
     <div className="users-page">
-      <h1>Users</h1>
+      <h1 className="user-h1">Users</h1>
       <Table users={users} />
     </div>
   );

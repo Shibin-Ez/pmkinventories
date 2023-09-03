@@ -3,6 +3,9 @@
     flex-direction: column;
     align-items: center;
 }
+.user-h1 {
+    font-weight: 400;
+}
 
 table {
     border-collapse: collapse;

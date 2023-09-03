@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import Table from "./Table";
 
 const SitesPage = () => {
-  const [sites, setSites] = useState([]);
+  const [sites, setSites] = useState([
+    "loading",
+    "loading",
+    "loading",
+    "loading",
+    "loading",
+  ]);
 
   const getSites = async () => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/sites`);
@@ -17,7 +23,7 @@ const SitesPage = () => {
 
   return (
     <div className="users-page">
-      <h1>sites</h1>
+      <h1 className="user-h1">sites</h1>
       <Table sites={sites} />
     </div>
   );
