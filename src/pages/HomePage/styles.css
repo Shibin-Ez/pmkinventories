@@ -17,12 +17,15 @@
 
 /* Side Box */
 .side-box {
-    margin-right: 2.5rem;
+    margin-left: 1.7rem;
+    margin-right: 1.7rem;
 }
 .side-box-box {
     border: 1px solid black;
     padding: 1rem;
     border-radius: 0.5rem;
+    height: 12rem;
+    position: relative;
 }
 .side-box-h3 {
     font-size: 1.5rem;
@@ -49,7 +52,9 @@
     font-size: 1rem;
     letter-spacing: 0.05rem;
     /* font-weight: 400; */
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
+    position: absolute;
+    bottom: 1.5rem;
     cursor: pointer;
     transition: background-color 0.1s ease-in-out;
 }

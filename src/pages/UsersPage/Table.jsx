@@ -1,4 +1,9 @@
+import Skeleton from "react-loading-skeleton";
+import { useNavigate } from "react-router-dom";
+
 const Table = ({ users }) => {
+  const navigate = useNavigate();
+
   return (
     <table>
       <tr>
@@ -11,8 +16,18 @@ const Table = ({ users }) => {
         <th>Password</th>
       </tr>
       {users.map((user) => {
-        return (
-          <tr>
+        return user == "loading" ? (
+          <tr onClick={() => navigate(`/update-user/${user.id}`)}>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+          </tr>
+        ) : (
+          <tr onClick={() => navigate(`/update-user/${user.id}`)}>
             <td>{user.id}</td>
             <td>{user.name}</td>
             <td>{user.userRole}</td>

@@ -1,5 +1,4 @@
 const Table = ({ sites }) => {
-    console.log(sites);
     return (
       <table>
         <tr>

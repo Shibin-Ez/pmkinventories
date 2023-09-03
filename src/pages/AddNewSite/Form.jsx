@@ -1,5 +1,11 @@
 import { TextField, Button } from "@mui/material";
 import { Formik } from "formik";
+import * as yup from "yup";
+
+const siteSchema = yup.object({
+  name: yup.string().required("Name is required"),
+  siteType: yup.string().required("Site Type is required"),
+});
 
 const initialValues = {
   name: "",
@@ -9,25 +15,31 @@ const initialValues = {
 
 const Form = () => {
   const handleFormSubmit = async (values, onSubmitProps) => {
-    console.log(values);
-    const formResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/sites`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const formResponse = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/sites`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
     const data = await formResponse.json();
     if (data) {
-      alert("User added successfully!");
+      alert("Site added successfully!");
     } else {
-      alert("Error adding user!");
+      alert("Error adding site!");
     }
     onSubmitProps.resetForm();
   };
 
   return (
-    <Formik onSubmit={handleFormSubmit} initialValues={initialValues}>
+    <Formik
+      onSubmit={handleFormSubmit}
+      initialValues={initialValues}
+      validationSchema={siteSchema}
+    >
       {({
         handleSubmit,
         setFieldValue,
@@ -35,6 +47,8 @@ const Form = () => {
         values,
         handleChange,
         handleBlur,
+        errors,
+        touched,
       }) => (
         <form onSubmit={handleSubmit} className="admin-add-form">
           <div className="form-text">
@@ -43,7 +57,10 @@ const Form = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               name="name"
+              value={values.name}
               fullWidth
+              error={Boolean(touched.name) && Boolean(errors.name)}
+              helperText={touched.name && errors.name}
             />
           </div>
           <div className="flex">

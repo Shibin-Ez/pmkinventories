@@ -3,9 +3,13 @@ import "./styles.css";
 import Table from "./Table";
 
 const UsersPage = () => {
-  const [users, setUsers] = useState([]);
-
-  console.log(process.env.REACT_APP_SERVER_URL);
+  const [users, setUsers] = useState([
+    "loading",
+    "loading",
+    "loading",
+    "loading",
+    "loading",
+  ]);
 
   const getUsers = async () => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users`);

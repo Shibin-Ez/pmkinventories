@@ -1,6 +1,7 @@
 import { TextField, Autocomplete, Button } from "@mui/material";
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import * as yup from "yup";
 
 const userSchema = yup.object({
@@ -8,16 +9,40 @@ const userSchema = yup.object({
   userRole: yup.string().required("User Role is required"),
 });
 
-const initialValues = {
-  name: "",
-  userRole: "",
-  siteId: "",
-  mobileNo: "",
-  email: "",
-};
+const Form = () => {
+  const [initialValues, setInitialValues] = useState({
+    name: "",
+    userRole: "",
+    siteId: "",
+    mobileNo: "",
+    email: "",
+  });
 
-const Form = ({ setUser }) => {
   const [options, setOptions] = useState([]);
+  const [index, setIndex] = useState(-1);
+  const [siteName, setSiteName] = useState("");
+
+  const { id } = useParams();
+
+  const getUser = async () => {
+    const userResponse = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await userResponse.json();
+    setInitialValues({
+      name: data.name,
+      userRole: data.userRole,
+      siteId: parseInt(data.siteId),
+      mobileNo: data.mobileNo,
+      email: data.email,
+    });
+  };
 
   const getSites = async () => {
     const sitesResponse = await fetch(
@@ -30,27 +55,43 @@ const Form = ({ setUser }) => {
       }
     );
     const data = await sitesResponse.json();
-    const formattedData = data.map((site) => site.id + " - " + site.name);
+    const formattedData = data.map((site) => ({
+      label: site.name,
+      siteId: site.id,
+    }));
+
     setOptions(formattedData);
+    formattedData.forEach((site, i) => {
+      if (site.siteId === initialValues.siteId) {
+        setIndex(i);
+        setSiteName(site.label);
+      }
+    });
+    // setOptions([
+    //   { label: "Option 1", value: 1 },
+    //   { label: "Option 2", value: 2 },
+    //   { label: "Option 3", value: 3 },
+    // ]);
   };
 
   useEffect(() => {
     getSites();
+    getUser();
   }, []);
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     const modifiedValues = {
       name: values.name,
       userRole: values.userRole,
-      siteId: parseInt(values.siteId.split(" - ")[0]),
+      siteId: values.siteId.siteId,
       mobileNo: values.mobileNo,
       email: values.email,
     };
 
     const formResponse = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/users`,
+      `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
       {
-        method: "POST",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -59,18 +100,18 @@ const Form = ({ setUser }) => {
     );
     const data = await formResponse.json();
     if (data) {
-      alert("User added successfully!");
-      setUser(data);
+      alert("User updated successfully!");
     } else {
       alert("Error adding user!");
     }
-    onSubmitProps.resetForm();
+    // onSubmitProps.resetForm();
   };
 
   return (
     <Formik
       onSubmit={handleFormSubmit}
       initialValues={initialValues}
+      enableReinitialize={true}
       validationSchema={userSchema}
     >
       {({
@@ -109,7 +150,16 @@ const Form = ({ setUser }) => {
               value="user"
               onChange={() => setFieldValue("userRole", "user")}
             />
-            <label for="form-role-user">User</label>
+            <label
+              for="form-role-user"
+              style={
+                values.userRole === "user"
+                  ? { backgroundColor: "black", color: "white" }
+                  : {}
+              }
+            >
+              User
+            </label>
             <input
               type="radio"
               name="userRole"
@@ -117,7 +167,16 @@ const Form = ({ setUser }) => {
               value="admin"
               onChange={() => setFieldValue("userRole", "admin")}
             />
-            <label for="form-role-admin">Admin</label>
+            <label
+              for="form-role-admin"
+              style={
+                values.userRole === "admin"
+                  ? { backgroundColor: "black", color: "white" }
+                  : {}
+              }
+            >
+              Admin
+            </label>
             <input
               type="radio"
               name="userRole"
@@ -125,7 +184,16 @@ const Form = ({ setUser }) => {
               value="manager"
               onChange={() => setFieldValue("userRole", "manager")}
             />
-            <label for="form-role-manager">Manager</label>
+            <label
+              for="form-role-manager"
+              style={
+                values.userRole === "manager"
+                  ? { backgroundColor: "black", color: "white" }
+                  : {}
+              }
+            >
+              Manager
+            </label>
             <input
               type="radio"
               name="userRole"
@@ -133,14 +201,25 @@ const Form = ({ setUser }) => {
               value="director"
               onChange={() => setFieldValue("userRole", "director")}
             />
-            <label for="form-role-director">Director</label>
+            <label
+              for="form-role-director"
+              style={
+                values.userRole === "director"
+                  ? { backgroundColor: "black", color: "white" }
+                  : {}
+              }
+            >
+              Director
+            </label>
           </div>
           <div className="form-text">
+            previosly assigned site : {siteName}
             <Autocomplete
               disablePortal
               id="user-site-select"
               name="siteId"
               options={options}
+              getOptionLabel={(option) => option.label}
               onChange={(event, value) => setFieldValue("siteId", value)}
               renderInput={(params) => (
                 <TextField {...params} label="Assigned Site (Optional)" />
@@ -183,7 +262,7 @@ const Form = ({ setUser }) => {
                 },
               }}
             >
-              Add User
+              Update
             </Button>
           </div>
         </form>

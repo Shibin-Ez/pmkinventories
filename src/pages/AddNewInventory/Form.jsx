@@ -1,5 +1,10 @@
 import { TextField, Button } from "@mui/material";
 import { Formik } from "formik";
+import * as yup from "yup";
+
+const inventorySchema = yup.object({
+  name: yup.string().required("Name is required"),
+});
 
 const initialValues = {
   name: "",
@@ -8,13 +13,16 @@ const initialValues = {
 const Form = () => {
   const handleFormSubmit = async (values, onSubmitProps) => {
     console.log(values);
-    const formResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/inventories`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const formResponse = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/inventories`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
     const data = await formResponse.json();
     if (data) {
       alert("User added successfully!");
@@ -25,7 +33,11 @@ const Form = () => {
   };
 
   return (
-    <Formik onSubmit={handleFormSubmit} initialValues={initialValues}>
+    <Formik
+      onSubmit={handleFormSubmit}
+      initialValues={initialValues}
+      validationSchema={inventorySchema}
+    >
       {({
         handleSubmit,
         setFieldValue,
@@ -33,6 +45,8 @@ const Form = () => {
         values,
         handleChange,
         handleBlur,
+        errors,
+        touched,
       }) => (
         <form onSubmit={handleSubmit} className="admin-add-form">
           <div className="form-text">
@@ -42,6 +56,8 @@ const Form = () => {
               onChange={handleChange}
               name="name"
               fullWidth
+              error={Boolean(touched.name) && Boolean(errors.name)}
+              helperText={touched.name && errors.name}
             />
           </div>
           {/* <div className="flex">

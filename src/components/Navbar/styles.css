@@ -1,0 +1,27 @@
+.navbar {
+    /* background-color: gray; */
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 1rem;
+    padding-right: 5rem;
+}
+
+.login-btn {
+    all : unset;
+    margin-left: 1rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    transition: background-color 0.1s ease;
+}
+.login-btn:hover {
+    background-color: white;
+    color: black;
+}

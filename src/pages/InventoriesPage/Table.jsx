@@ -1,5 +1,4 @@
 const Table = ({ inventories }) => {
-  console.log(inventories);
   return (
     <table>
       <tr>

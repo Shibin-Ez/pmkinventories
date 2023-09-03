@@ -1,32 +1,39 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SideBox = ({ title, singular }) => {
-  const navigate = useNavigate();
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-  const contents = [
-    { name: "director", count: 1 },
-    { name: "management", count: 5 },
-    { name: "approver", count: 11 },
-  ];
+const SideBox = ({ title, singular, data }) => {
+  const navigate = useNavigate();
 
   return (
     <div className="side-box">
       <h3 className="side-box-h3">{title}</h3>
       <div className="side-box-box">
-        {contents.map((content) => {
-          return (
+        {data.map((datum) => {
+          return datum == "loading" ? (
+            <Skeleton height={"1.5rem"} />
+          ) : (
             <div className="side-box-content">
-              <span>{content.name}</span>
-              <div className="side-box-content-span">{content.count}</div>
+              <span>{datum[0]}</span>
+              <div className="side-box-content-span">{datum[1]}</div>
             </div>
           );
         })}
 
         <div className="see-all-btn-container">
-          <button className="see-all-btn" onClick={() => navigate(`/${title}`)}>see all</button>
+          <button className="see-all-btn" onClick={() => navigate(`/${title}`)}>
+            see all
+          </button>
         </div>
       </div>
-      <button className="side-box-add-btn" onClick={() => navigate(`/add-${singular}`)}>Add New {singular}</button>
+      <button
+        className="side-box-add-btn"
+        onClick={() => navigate(`/add-${singular}`)}
+      >
+        Add New {singular}
+      </button>
     </div>
   );
 };
