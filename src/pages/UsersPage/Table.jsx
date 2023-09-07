@@ -28,7 +28,7 @@ const Table = ({ users }) => {
           </tr>
         ) : (
           <tr onClick={() => navigate(`/update-user/${user.id}`)}>
-            <td>{user.id}</td>
+            <td>{user.userId}</td>
             <td>{user.name}</td>
             <td>{user.userRole}</td>
             <td>{user.siteId}</td>
