@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../../components/Navbar";
 import "./styles.css";
 import Table from "./Table";
 
@@ -23,6 +24,7 @@ const UsersPage = () => {
 
   return (
     <div className="users-page">
+      <Navbar />
       <h1 className="user-h1">Users</h1>
       <Table users={users} />
     </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Navbar from "../../components/Navbar";
 // import "./styles.css";
 import Table from "./Table";
 
@@ -27,6 +28,7 @@ const Inventories = () => {
 
   return (
     <div className="users-page">
+      <Navbar />
       <h1 className="user-h1">Inventories</h1>
       <Table inventories={inventories} />
     </div>
