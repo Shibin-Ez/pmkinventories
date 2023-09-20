@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 import Table from "./Table";
+import "./styles.css"
 
 const LogsPage = () => {
   const [logs, setLogs] = useState([

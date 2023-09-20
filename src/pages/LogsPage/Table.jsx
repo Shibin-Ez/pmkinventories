@@ -1,5 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
+import dateFormat from "./dateFormat";
 
 const Table = ({ logs }) => {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Table = ({ logs }) => {
         <th>Timestamp</th>
       </tr>
       {logs.map((log) => {
+        const [date, time] = dateFormat(log.timestamp);
         return log == "loading" ? (
           <tr>
             <td style={{ padding: "0.3rem" }}>
@@ -53,7 +55,7 @@ const Table = ({ logs }) => {
             <td>{log.serviceable}</td>
             <td>{log.scrapped}</td>
             <td>{log.remark}</td>
-            <td>{log.timestamp}</td>
+            <td>{date}<br /><span className="td-time">{time}</span></td>
           </tr>
         );
       })}
