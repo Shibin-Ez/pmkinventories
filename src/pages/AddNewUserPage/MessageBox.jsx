@@ -7,7 +7,7 @@ const MessageBox = ({ user }) => {
       Kindly download the app via the following link: <br />
       https://www.wikipedia.org/ <br />
       <br />
-      Mobile No: {user.mobileNo ? user.mobileNo : "987654321"} <br />
+      User Id: {user.userId ? user.userId : "*****"} <br />
       Password : {user.passwordHash ? user.passwordHash : "****"}
     </div>
   );
