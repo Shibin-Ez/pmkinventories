@@ -21,7 +21,7 @@ const Report = () => {
   }, []);
 
   return (
-    <div className="report">
+    <div className="report" id="report">
       <h2 className="report-h2">Report</h2>
       {report.map((site) => {
         return (

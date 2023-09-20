@@ -1,11 +1,12 @@
 .navbar {
     /* background-color: gray; */
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: right;
     align-items: center;
     padding: 1rem;
     padding-right: 5rem;
+    margin-left: auto;
 }
 
 .login-btn {
