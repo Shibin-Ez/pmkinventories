@@ -17,7 +17,7 @@ const AddNewUserPage = () => {
       <a
         href={`https://api.whatsapp.com/send?phone=${user.mobileNo}&text=
           Hello ${user.name ? user.name : "Name"}, your account for PMK Inventories has been created. Kindly download the app via the following link: 
-          https://www.wikipedia.org/ \n
+          https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO \n
           \n
           
           User Id: ${user.userId ? user.userId : "*****"} \n
