@@ -11,6 +11,7 @@ const Table = ({ users }) => {
         <th>Full Name</th>
         <th>Role</th>
         <th>Site ID</th>
+        <th>Site Name</th>
         <th>Mobile No</th>
         <th>Email</th>
         <th>Password</th>
@@ -25,6 +26,7 @@ const Table = ({ users }) => {
             <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
             <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
             <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
+            <td style={{padding: "0.3rem"}}><Skeleton width="fullWidth" height="2.5rem" /></td>
           </tr>
         ) : (
           <tr onClick={() => navigate(`/update-user/${user.id}`)}>
@@ -32,6 +34,7 @@ const Table = ({ users }) => {
             <td>{user.name}</td>
             <td>{user.userRole}</td>
             <td>{user.siteId}</td>
+            <td>{user.siteName}</td>
             <td>{user.mobileNo}</td>
             <td>{user.email}</td>
             <td>{user.passwordHash}</td>
