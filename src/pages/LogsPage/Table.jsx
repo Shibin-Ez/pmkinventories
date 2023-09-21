@@ -51,11 +51,57 @@ const Table = ({ logs }) => {
             <td>{log.id}</td>
             <td>{log.siteName}</td>
             <td>{log.inventoryName}</td>
-            <td>{log.available}</td>
-            <td>{log.serviceable}</td>
-            <td>{log.scrapped}</td>
+            <td>
+              {log.available}{" "}
+              <span
+                style={{
+                  color:
+                    log.available - log.prevAvailable > 0 ? "green" : "red",
+                }}
+              >
+                {log.available - log.prevAvailable != 0 && "("}
+                {log.available - log.prevAvailable > 0 && "+"}
+                {log.available - log.prevAvailable != 0 &&
+                  log.available - log.prevAvailable}
+                {log.available - log.prevAvailable != 0 && ")"}
+              </span>
+            </td>
+            <td>
+              {log.serviceable}{" "}
+              <span
+                style={{
+                  color:
+                    log.serviceable - log.prevServiceable > 0 ? "green" : "red",
+                }}
+              >
+                {log.serviceable - log.prevServiceable != 0 && "("}
+                {log.serviceable - log.prevServiceable > 0 && "+"}
+                {log.serviceable - log.prevServiceable != 0 &&
+                  log.serviceable - log.prevServiceable}
+                {log.serviceable - log.prevServiceable != 0 && ")"}
+              </span>
+            </td>
+            <td>
+              {log.scrapped}{" "}
+              <span
+                style={{
+                  color:
+                    log.scrapped - log.prevScrapped > 0 ? "green" : "red",
+                }}
+              >
+                {log.scrapped - log.prevScrapped != 0 && "("}
+                {log.scrapped - log.prevScrapped > 0 && "+"}
+                {log.scrapped - log.prevScrapped != 0 &&
+                  log.scrapped - log.prevScrapped}
+                {log.scrapped - log.prevScrapped != 0 && ")"}
+              </span>
+            </td>
             <td>{log.remark}</td>
-            <td>{date}<br /><span className="td-time">{time}</span></td>
+            <td>
+              {date}
+              <br />
+              <span className="td-time">{time}</span>
+            </td>
           </tr>
         );
       })}
