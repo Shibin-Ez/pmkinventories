@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 
 const AddNewUserPage = () => {
   const [user, setUser] = useState({});
-
+  console.log(user);
   return (
     <div className="add-user-page">
       <Navbar />
@@ -15,14 +15,13 @@ const AddNewUserPage = () => {
       <Form setUser={setUser} />
       <MessageBox user={user} />
       <a
-        href={`https://api.whatsapp.com/send?phone=${user.mobileNo}&text=
-          Hello ${user.name ? user.name : "Name"}, your account for PMK Inventories has been created. Kindly download the app via the following link: 
-          https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO \n
-          \n
-          
-          User Id: ${user.userId ? user.userId : "*****"} \n
-          Password : ${user.passwordHash ? user.passwordHash : "****"}
-      `}
+        href={`https://api.whatsapp.com/send?phone=${
+          user.mobileNo
+        }&text=Hello ${
+          user.name ? user.name : "Name"
+        }, your account for PMK Inventories has been created.%0AKindly download the app via the below link:%0Ahttps://tinyurl.com/2h2ajwcc%0A%AUser manual can be downloaded from the below link:%0A${user.manualLink ? user.manualLink : ""}%0A%0AUser Id: ${
+          user.userId ? user.userId : "*****"
+        }          Password : ${user.passwordHash ? user.passwordHash : "****"}`}
         target="_blank"
       >
         <Button
