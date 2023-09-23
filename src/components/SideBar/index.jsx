@@ -2,7 +2,8 @@ import "./styles.css";
 import { GoHome } from "react-icons/go";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import { BsFillJournalBookmarkFill, BsShift } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -14,25 +15,58 @@ const SideBar = () => {
     }
   };
 
+  const location = useLocation();
+  console.log(location.pathname);
+
+  const [active, setActive] = useState("home");
+
   return (
-    <div className="sidebar">
-      <h2 className="sidebar-h2">Dashboard</h2>
+    <div
+      className="sidebar"
+      style={{
+        width: location.pathname == "/home" ? "17rem" : "3rem",
+        paddingLeft: location.pathname == "/home" ? "3rem" : "1.2rem",
+      }}
+    >
+      <h2 className="sidebar-h2">
+        {location.pathname == "/home" ? "Dashboard" : "<>"}
+      </h2>
       <ul>
-        <li onClick={() => scrollToSection("home")}>
+        <li
+          onClick={() => {
+            navigate("/home");
+            scrollToSection("home");
+            setActive("home");
+          }}
+          style={{ color: active == "home" && "#000" }}
+        >
           <GoHome className="sidebar-icon" />
-          Home
+          {location.pathname == "/home" && "Home"}
         </li>
-        <li onClick={() => scrollToSection("report")}>
+        <li
+          onClick={() => {
+            navigate("/home");
+            scrollToSection("report");
+            setActive("report");
+          }}
+          style={{ color: active == "report" && "#000" }}
+        >
           <HiOutlineDocumentReport className="sidebar-icon" />
-          Reports
+          {location.pathname == "/home" && "Reports"}
         </li>
-        <li onClick={() => navigate("/logs")}>
+        <li
+          onClick={() => {
+            navigate("/logs");
+            setActive("logs");
+          }}
+          style={{ color: active == "logs" && "#000" }}
+        >
           <BsFillJournalBookmarkFill className="sidebar-icon" />
-          Logs
+          {location.pathname == "/home" && "Logs"}
         </li>
         <li>
           <BsShift className="sidebar-icon" />
-          Shift Mode
+          {location.pathname == "/home" && "Shift Stage"}
         </li>
       </ul>
     </div>

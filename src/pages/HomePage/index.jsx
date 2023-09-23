@@ -37,8 +37,6 @@ const HomePage = () => {
 
   return (
     <div className="home-page" id="home">
-      <SideBar />
-      <div className="home-right">
         <Navbar />
         <h1 className="home-h1">
           <span className="home-h1-span">Welcome to PMK's</span> <br />{" "}
@@ -54,7 +52,6 @@ const HomePage = () => {
           />
         </div>
         <Report />
-      </div>
     </div>
   );
 };

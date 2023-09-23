@@ -17,6 +17,7 @@ import UpdateUserPage from "./pages/UpdateUserPage";
 import UpdateSitePage from "./pages/UpdateSitePage";
 
 import LogsPage from "./pages/LogsPage";
+import SideBar from "./components/SideBar";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -24,47 +25,56 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/"
-            element={<Navigate to={isAuth ? "/home" : "/login"} />}
-          />
-          <Route path="/home" element={isAuth ? <HomePage /> : <LoginPage />} />
-          <Route
-            path="/add-user"
-            element={isAuth ? <AddNewUserPage /> : <LoginPage />}
-          />
-          <Route
-            path="/add-site"
-            element={isAuth ? <AddNewSitePage /> : <LoginPage />}
-          />
-          <Route
-            path="/add-inventory"
-            element={isAuth ? <AddNewInventoryPage /> : <LoginPage />}
-          />
-          <Route
-            path="/users"
-            element={isAuth ? <UsersPage /> : <LoginPage />}
-          />
-          <Route
-            path="/sites"
-            element={isAuth ? <SitesPage /> : <LoginPage />}
-          />
-          <Route
-            path="/inventories"
-            element={isAuth ? <InventoriesPage /> : <LoginPage />}
-          />
-          <Route
-            path="/update-user/:id"
-            element={isAuth ? <UpdateUserPage /> : <LoginPage />}
-          />
-          <Route
-            path="/update-site/:id"
-            element={isAuth ? <UpdateSitePage /> : <LoginPage />}
-          />
-          <Route path="/logs" element={isAuth ? <LogsPage /> : <LoginPage />} />
-        </Routes>
+        <div className="flex">
+          <SideBar />
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/"
+              element={<Navigate to={isAuth ? "/home" : "/login"} />}
+            />
+            <Route
+              path="/home"
+              element={isAuth ? <HomePage /> : <LoginPage />}
+            />
+            <Route
+              path="/add-user"
+              element={isAuth ? <AddNewUserPage /> : <LoginPage />}
+            />
+            <Route
+              path="/add-site"
+              element={isAuth ? <AddNewSitePage /> : <LoginPage />}
+            />
+            <Route
+              path="/add-inventory"
+              element={isAuth ? <AddNewInventoryPage /> : <LoginPage />}
+            />
+            <Route
+              path="/users"
+              element={isAuth ? <UsersPage /> : <LoginPage />}
+            />
+            <Route
+              path="/sites"
+              element={isAuth ? <SitesPage /> : <LoginPage />}
+            />
+            <Route
+              path="/inventories"
+              element={isAuth ? <InventoriesPage /> : <LoginPage />}
+            />
+            <Route
+              path="/update-user/:id"
+              element={isAuth ? <UpdateUserPage /> : <LoginPage />}
+            />
+            <Route
+              path="/update-site/:id"
+              element={isAuth ? <UpdateSitePage /> : <LoginPage />}
+            />
+            <Route
+              path="/logs"
+              element={isAuth ? <LogsPage /> : <LoginPage />}
+            />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );
