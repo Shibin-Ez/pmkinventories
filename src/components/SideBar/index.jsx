@@ -38,7 +38,7 @@ const SideBar = () => {
             scrollToSection("home");
             setActive("home");
           }}
-          style={{ color: active == "home" && "#000" }}
+          style={{ color: active == "home" && "#000"}}
         >
           <GoHome className="sidebar-icon" />
           {location.pathname == "/home" && "Home"}
@@ -49,7 +49,10 @@ const SideBar = () => {
             scrollToSection("report");
             setActive("report");
           }}
-          style={{ color: active == "report" && "#000" }}
+          style={{
+            color: active == "report" && "#000",
+            transition: "all 0.3s",
+          }}
         >
           <HiOutlineDocumentReport className="sidebar-icon" />
           {location.pathname == "/home" && "Reports"}
@@ -59,12 +62,14 @@ const SideBar = () => {
             navigate("/logs");
             setActive("logs");
           }}
-          style={{ color: active == "logs" && "#000" }}
+          style={{ color: active == "logs" && "#000"}}
         >
           <BsFillJournalBookmarkFill className="sidebar-icon" />
           {location.pathname == "/home" && "Logs"}
         </li>
-        <li>
+        <li
+          style={{ color: active == "shift" && "#000"}}
+        >
           <BsShift className="sidebar-icon" />
           {location.pathname == "/home" && "Shift Stage"}
         </li>
