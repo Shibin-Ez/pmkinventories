@@ -20,7 +20,7 @@ const Form = () => {
 
   const getSite = async () => {
     const siteResponse = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/sites/${id}`,
+      `${process.env.REACT_APP_SERVER_URL}/sites/site/${id}`,
       {
         method: "GET",
         headers: {
@@ -48,7 +48,7 @@ const Form = () => {
       address: values.address,
       latitude: values.latitude,
       longitude: values.longitude,
-    }
+    };
     const formResponse = await fetch(
       `${process.env.REACT_APP_SERVER_URL}/sites/${id}`,
       {
@@ -111,7 +111,16 @@ const Form = () => {
               value="workingSite"
               onChange={() => setFieldValue("siteType", "workingSite")}
             />
-            <label for="form-role-user">Working Site</label>
+            <label
+              for="form-role-user"
+              style={
+                values.siteType === "workingSite"
+                  ? { backgroundColor: "black", color: "white" }
+                  : {}
+              }
+            >
+              Working Site
+            </label>
             <input
               type="radio"
               name="siteType"
@@ -119,7 +128,16 @@ const Form = () => {
               value="godown"
               onChange={() => setFieldValue("siteType", "godown")}
             />
-            <label for="form-role-admin">Godown</label>
+            <label
+              for="form-role-admin"
+              style={
+                values.siteType === "godown"
+                  ? { backgroundColor: "black", color: "white" }
+                  : {}
+              }
+            >
+              Godown
+            </label>
           </div>
           <div className="form-text">
             <TextField

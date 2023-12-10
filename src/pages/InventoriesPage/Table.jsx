@@ -9,6 +9,7 @@ const Table = ({ inventories }) => {
       <tr>
         <th>ID</th>
         <th>Inventory Name</th>
+        <th>Category</th>
       </tr>
       {inventories.map((inventory) => {
         return inventory == "loading" ? (
@@ -19,11 +20,15 @@ const Table = ({ inventories }) => {
             <td style={{ padding: "0.3rem" }}>
               <Skeleton width="fullWidth" height="2.5rem" />
             </td>
+            <td style={{ padding: "0.3rem" }}>
+              <Skeleton width="fullWidth" height="2.5rem" />
+            </td>
           </tr>
         ) : (
           <tr>
-            <td>{inventory.id}</td>
+            <td>{inventory.inventoryId}</td>
             <td>{inventory.name}</td>
+            <td>{inventory.categoryName}</td>
           </tr>
         );
       })}

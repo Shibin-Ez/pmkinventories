@@ -14,7 +14,7 @@ const Table = ({ users }) => {
         <th>Site Name</th>
         <th>Mobile No</th>
         <th>Email</th>
-        <th>Password</th>
+        <th>OTP</th>
       </tr>
       {users.map((user) => {
         return user == "loading" ? (
@@ -37,7 +37,7 @@ const Table = ({ users }) => {
             <td>{user.siteName}</td>
             <td>{user.mobileNo}</td>
             <td>{user.email}</td>
-            <td>{user.passwordHash}</td>
+            <td>{user.passwordHash.length === 5 ? user.passwordHash.split('$')[1] : "-"}</td>
           </tr>
         );
       })}

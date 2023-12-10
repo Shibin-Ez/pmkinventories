@@ -30,7 +30,7 @@ const Table = ({ sites }) => {
           </tr>
         ) : (
           <tr  onClick={() => navigate(`/update-site/${site.id}`)}>
-            <td>{site.id}</td>
+            <td>{site.siteId}</td>
             <td>{site.name}</td>
             <td>{site.siteType}</td>
             <td>{site.address}</td>

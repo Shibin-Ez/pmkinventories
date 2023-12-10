@@ -26,7 +26,7 @@ const Form = () => {
 
   const getUser = async () => {
     const userResponse = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/users/${id}`,
+      `${process.env.REACT_APP_SERVER_URL}/users/user/${id}`,
       {
         method: "GET",
         headers: {
