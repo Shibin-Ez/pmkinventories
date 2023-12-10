@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { BsDownload } from "react-icons/bs";
 
 const Report = () => {
   const [report, setReport] = useState([
@@ -22,6 +23,11 @@ const Report = () => {
 
   return (
     <div className="report" id="report">
+      <a href={`${process.env.REACT_APP_SERVER_URL}/stocks/reports/sitewise/download`}>
+        <button className="report-download-btn">
+          <BsDownload />
+        </button>
+      </a>
       <h2 className="report-h2">Report</h2>
       {report.map((site) => {
         return (

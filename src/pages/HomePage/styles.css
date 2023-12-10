@@ -99,6 +99,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 3rem;
+    position: relative;
 }
 .report-h2 {
     color: rgb(42, 6, 6);
@@ -112,6 +113,19 @@
     padding: 0.3rem 0;
     border-bottom: 2px solid rgb(42, 6, 6);
 }
+
+.report-download-btn {
+    all: unset;
+    background-color: #000000;
+    color: white;
+    padding: 0.2rem 0.7rem;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
 .report-content {
     padding: 1rem;
 }
