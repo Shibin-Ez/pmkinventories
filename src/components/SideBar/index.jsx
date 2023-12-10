@@ -1,7 +1,7 @@
 import "./styles.css";
 import { GoHome } from "react-icons/go";
 import { HiOutlineDocumentReport } from "react-icons/hi";
-import { BsFillJournalBookmarkFill, BsShift } from "react-icons/bs";
+import { BsFillJournalBookmarkFill, BsShift, BsDatabase } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -38,7 +38,7 @@ const SideBar = () => {
             scrollToSection("home");
             setActive("home");
           }}
-          style={{ color: active == "home" && "#000"}}
+          style={{ color: active == "home" && "#000" }}
         >
           <GoHome className="sidebar-icon" />
           {location.pathname == "/home" && "Home"}
@@ -62,14 +62,22 @@ const SideBar = () => {
             navigate("/logs");
             setActive("logs");
           }}
-          style={{ color: active == "logs" && "#000"}}
+          style={{ color: active == "logs" && "#000" }}
         >
           <BsFillJournalBookmarkFill className="sidebar-icon" />
           {location.pathname == "/home" && "Logs"}
         </li>
         <li
-          style={{ color: active == "shift" && "#000"}}
+          onClick={() => {
+            navigate("/cruds");
+            setActive("cruds");
+          }}
+          style={{ color: active == "cruds" && "#000" }}
         >
+          <BsDatabase className="sidebar-icon" />
+          {location.pathname == "/home" && "CRUD Logs"}
+        </li>
+        <li style={{ color: active == "shift" && "#000" }}>
           <BsShift className="sidebar-icon" />
           {location.pathname == "/home" && "Shift Stage"}
         </li>

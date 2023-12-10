@@ -18,6 +18,7 @@ import UpdateSitePage from "./pages/UpdateSitePage";
 
 import LogsPage from "./pages/LogsPage";
 import SideBar from "./components/SideBar";
+import CrudLogsPage from "./pages/CrudLogsPage";
 
 function App() {
   const isAuth = Boolean(useSelector((state) => state.token));
@@ -72,6 +73,10 @@ function App() {
             <Route
               path="/logs"
               element={isAuth ? <LogsPage /> : <LoginPage />}
+            />
+            <Route
+              path="/cruds"
+              element={isAuth ? <CrudLogsPage /> : <LoginPage />}
             />
           </Routes>
         </div>

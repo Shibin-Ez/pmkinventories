@@ -1,0 +1,32 @@
+.cruds-content {
+    width: 90%;
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.cruds-create {
+    color: green;
+}
+
+.cruds-delete {
+    color: rgb(220, 6, 6);
+}
+
+.cruds-update {
+    color: rgb(37, 37, 193);
+}
+
+.cruds-span {
+    background-color: #dffaff;
+    padding:  0.1rem 0.3rem;
+    border-radius: 0.3rem;
+}
+
+.cruds-date {
+    width: 40%;
+    text-align: right;
+}
